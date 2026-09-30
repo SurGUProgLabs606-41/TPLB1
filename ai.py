@@ -1,4 +1,4 @@
-"""ИИ: Minimax с alpha-beta отсечением и эвристической оценкой."""
+# ИИ: Minimax с alpha-beta отсечением и эвристической оценкой.
 
 import math
 import random
@@ -6,9 +6,8 @@ from game import Board, PLAYER, AI, ROWS, COLS
 
 WIN_SCORE = 10_000_000
 
-
+# Оценивает позицию числа, чем больше, тем лучше для AI
 def score_window(window, piece):
-    """Оценка окна из 4 клеток."""
     opp = PLAYER if piece == AI else AI
     score = 0
     p = window.count(piece)
@@ -27,9 +26,8 @@ def score_window(window, piece):
         score -= 100_000
     return score
 
-
+# Эвристическая оценка позиции для ИИ.
 def evaluate(board, piece):
-    """Эвристическая оценка позиции для ИИ."""
     score = 0
     g, R, C = board.grid, board.rows, board.cols
 
@@ -67,7 +65,7 @@ def terminal_score(board, depth):
         return -WIN_SCORE - depth
     return 0
 
-
+# Выбирает ход, при котором даже лучший ответ врага оставит тебя в лучшем положении.
 def minimax(board, depth, alpha, beta, maximizing):
     moves = board.valid_moves()
 
@@ -104,13 +102,12 @@ def minimax(board, depth, alpha, beta, maximizing):
                 break
         return best, best_col
 
-
+# Сортеровка ходов
 def order_moves(board, moves):
-    """Центральные ходы рассматриваем первыми — это ускоряет alpha-beta."""
     center = COLS // 2
     return sorted(moves, key=lambda c: abs(c - center))
 
-
+# Запускает minimax и возвращает лучший ход
 def best_move(board, depth=5):
     _, col = minimax(board, depth, -math.inf, math.inf, True)
     return col

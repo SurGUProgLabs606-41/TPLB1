@@ -1,4 +1,4 @@
-"""Отрисовка игры на Pygame."""
+# Отрисовка игры на Pygame.
 
 import pygame
 from game import ROWS, COLS, PLAYER, AI, EMPTY
@@ -58,7 +58,7 @@ def draw(screen, board, hover_col, win_cells, winner_text, font):
         rect = txt.get_rect(center=(WIDTH // 2, CELL // 2))
         screen.blit(txt, rect)
 
-
+# Переводит X-координату мыши в номер столбца
 def pixel_to_col(x):
     if 0 <= x < WIDTH:
         return x // CELL

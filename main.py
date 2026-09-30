@@ -4,7 +4,7 @@ from game import Board, PLAYER, AI, EMPTY
 from ai import best_move
 from gui import draw, pixel_to_col, WIDTH, HEIGHT, CELL
 
-AI_DEPTH = 5  # глубина поиска ИИ
+AI_DEPTH = 5  # Глубина поиска ИИ
 
 
 def main():
@@ -74,6 +74,7 @@ def main():
                         turn = PLAYER
                 ai_thinking = False
 
+        # Отрисовка игры
         draw(screen, board, hover_col, win_cells, winner_text, font)
         pygame.display.flip()
         clock.tick(60)
